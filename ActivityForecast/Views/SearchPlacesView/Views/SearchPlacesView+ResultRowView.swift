@@ -15,7 +15,6 @@ extension SearchPlacesView {
     /// and states *why* an add button is unavailable — already on the list, or no
     /// slots left — instead of just dimming it.
     struct ResultRowView: View {
-
         let place: Place
         let isSaved: Bool
         let hasRoom: Bool

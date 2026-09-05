@@ -81,10 +81,9 @@ struct SearchPlacesView: View {
             case .prompt:
                 ContentUnavailableView(
                     "Search for places",
-                    systemImage: "magnifyingglass",
-                    description: Text("Type at least \(AppLimits.minimumQueryLength) letters of a city or town.")
+                    systemImage: "magnifyingglass"
                 )
-
+                
             case .searching:
                 ProgressView()
                     .frame(maxWidth: .infinity, maxHeight: .infinity)

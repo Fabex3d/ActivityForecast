@@ -45,8 +45,6 @@ struct ForecastView: View {
             .padding(Spacing.standard)
         }
         .screenBackground()
-        .navigationTitle(viewModel.place.name)
-        .toolbarTitleDisplayMode(.inline)
         .task { viewModel.load() }
         .onDisappear { viewModel.cancel() }
         .onChange(of: selectedActivity) { _, activity in

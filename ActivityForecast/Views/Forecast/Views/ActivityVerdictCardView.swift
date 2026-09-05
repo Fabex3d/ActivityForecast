@@ -21,11 +21,11 @@ struct ActivityVerdictCardView: View {
     }
 
     private var displayScore: String {
-        rating == .notHere ? "—" : rating.rawValue.formatted()
+        rating == .notHere ? "—" : "\(rating.rawValue.formatted())/5"
     }
 
     var body: some View {
-        HStack(alignment: .top, spacing: Spacing.standard) {
+        HStack(spacing: Spacing.standard) {
             Text(displayScore)
                 .font(AppFont.displayLarge)
                 .monospacedDigit()

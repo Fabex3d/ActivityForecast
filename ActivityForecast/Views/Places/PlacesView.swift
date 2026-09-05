@@ -12,22 +12,20 @@ import SwiftUI
 /// Navigation is a typed `NavigationStack` path of `Place` values — the whole place
 /// travels to the forecast screen, so nothing has to be looked back up by identifier.
 struct PlacesView: View {
-
+    
     @State private var viewModel: PlacesViewModel
     @State private var route: [Place] = []
     @State private var isSearchPresented = false
-
+    
     init(viewModel: PlacesViewModel? = nil) {
         _viewModel = State(wrappedValue: viewModel ?? PlacesViewModel())
     }
-
+    
     var body: some View {
         NavigationStack(path: $route) {
             content
                 .navigationTitle("Activity Forecast")
-                .toolbar {
-                    toolbarContent
-                }
+                .toolbar { toolbarContent }
                 .navigationDestination(for: Place.self) { place in
                     ForecastView(place: place) { activity in
                         viewModel.setPreferredActivity(activity, for: place)
@@ -35,36 +33,46 @@ struct PlacesView: View {
                 }
                 .sheet(isPresented: $isSearchPresented) {
                     SearchPlacesView(savedPlaces: viewModel.places) { place in
-                        viewModel.add(place)
+                        if viewModel.add(place) {
+                            isSearchPresented.toggle()
+                        }
                     }
                 }
         }
-        .task {
-            viewModel.refresh()
-        }
-        .onDisappear {
-            viewModel.cancel()
-        }
+        .task { viewModel.refresh() }
+        .onDisappear { viewModel.cancel() }
     }
-
+    
+    /// "4 of 10 places", or a nudge that there is no room left.
+    private var slotSummary: LocalizedStringResource {
+        let saved = viewModel.places.count
+        let cap = AppLimits.maximumSavedPlaces
+        
+        if viewModel.isAtCapacity {
+            return "\(saved) of \(cap) places · full"
+        }
+        return "\(saved) of \(cap) places"
+    }
+    
     @ViewBuilder
     private var content: some View {
         if viewModel.isEmpty {
-            PlacesEmptyStateView {
+            EmptyStateView {
                 isSearchPresented = true
             }
         } else {
             placeList
         }
     }
-
+    
     private var placeList: some View {
         List {
             ForEach(viewModel.places) { place in
-                NavigationLink(value: place) {
-                    PlaceCardView(place: place, state: viewModel.forecastState(for: place)) {
-                        viewModel.loadForecast(for: place)
-                    }
+                CardView(place: place, state: viewModel.forecastState(for: place)) {
+                    viewModel.loadForecast(for: place)
+                }
+                .onTapGesture {
+                    route.append(place)
                 }
                 .listRowInsets(
                     EdgeInsets(
@@ -91,7 +99,7 @@ struct PlacesView: View {
             await viewModel.refreshAndWait()
         }
     }
-
+    
     @ToolbarContentBuilder
     private var toolbarContent: some ToolbarContent {
         if !viewModel.isEmpty {
@@ -99,12 +107,18 @@ struct PlacesView: View {
                 EditButton()
             }
         }
-
+        
         ToolbarItem(placement: .topBarTrailing) {
             Button("Add a place", systemImage: "plus") {
                 isSearchPresented = true
             }
             .disabled(viewModel.isAtCapacity)
+        }
+        
+        ToolbarItem(placement: .bottomBar) {
+            Text(slotSummary)
+                .font(.caption2)
+                .padding(.horizontal, Spacing.standard)
         }
     }
 }

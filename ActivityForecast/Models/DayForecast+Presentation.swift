@@ -15,7 +15,7 @@ import Foundation
 public extension DayForecast {
 
     /// The separator between the parameters that drove a score.
-    private static let separator = " · "
+    private static let separator = " | "
 
     private var calendar: Calendar {
         var calendar = Calendar.current

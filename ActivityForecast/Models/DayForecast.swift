@@ -75,7 +75,7 @@ public extension DayForecast {
     /// The suitability tier for one activity. The scoring engine clamps to 1–5, so
     /// the fallback is only reached if that contract ever changes.
     func rating(for activity: Activity) -> ActivityRating {
-        ActivityRating(rawValue: activity.score(in: ratings)) ?? .stayIn
+        ActivityRating(rawValue: activity.score(in: ratings)) ?? .skip
     }
 
     /// How gusty the wind is relative to its sustained speed — the chop proxy the

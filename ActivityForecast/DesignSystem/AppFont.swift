@@ -18,19 +18,19 @@ public enum AppFont {
     // MARK: Display — stands in for Caprasimo
 
     /// Screen titles, e.g. the place name on the forecast screen.
-    public static let displayLarge = Font.system(.largeTitle, design: .serif, weight: .bold)
+    public static let displayLarge = Font.system(.largeTitle, design: .rounded, weight: .bold)
 
     /// The verdict score on the hero card.
     public static let displayScore = Font.system(.title, design: .serif, weight: .bold)
 
     /// Card titles, e.g. a place name in the saved list.
-    public static let displayTitle = Font.system(.title3, design: .serif, weight: .bold)
+    public static let displayTitle = Font.system(.title3, design: .rounded, weight: .bold)
 
     /// The verdict wording on the hero card.
     public static let displayVerdict = Font.system(.headline, design: .serif, weight: .bold)
 
     /// The number inside a suitability badge.
-    public static let displayBadge = Font.system(.subheadline, design: .serif, weight: .bold)
+    public static let displayBadge = Font.system(.subheadline, design: .rounded, weight: .bold)
 
     // MARK: Body — stands in for Figtree
 

@@ -24,35 +24,35 @@ public struct RatingStyle: Sendable {
 public extension ActivityRating {
 
     /// The scale as the design's legend shows it: best first, gated-off excluded.
-    static let allTiers: [ActivityRating] = [.sendIt, .goForIt, .notBad, .ehMaybe, .stayIn]
+    static let allTiers: [ActivityRating] = [.great, .good, .doable, .marginal, .skip]
 
     var style: RatingStyle {
         switch self {
-            case .sendIt:
+            case .great:
                 return RatingStyle(
                     fill: .appDynamic(light: 0x56633F, dark: 0x6E7F4E),
                     ink: .appDynamic(light: 0xF0FAE1, dark: 0xF0FAE1),
                     groundInk: .appDynamic(light: 0x56633F, dark: 0xB8C79B)
                 )
-            case .goForIt:
+            case .good:
                 return RatingStyle(
                     fill: .appDynamic(light: 0x728157, dark: 0x8B9C67),
                     ink: .appDynamic(light: 0xF0FAE1, dark: 0x1B2011),
                     groundInk: .appDynamic(light: 0x56633F, dark: 0xB8C79B)
                 )
-            case .notBad:
+            case .doable:
                 return RatingStyle(
                     fill: .appDynamic(light: 0xF6A06B, dark: 0xC97F49),
                     ink: .appDynamic(light: 0x402310, dark: 0x2A1607),
                     groundInk: .appDynamic(light: 0x8C491A, dark: 0xE9A470)
                 )
-            case .ehMaybe:
+            case .marginal:
                 return RatingStyle(
                     fill: .appDynamic(light: 0xB2622D, dark: 0x9E5525),
                     ink: .appDynamic(light: 0xFFF2EB, dark: 0xFFF2EB),
                     groundInk: .appDynamic(light: 0x8C491A, dark: 0xE08B4F)
                 )
-            case .stayIn:
+            case .skip:
                 return RatingStyle(
                     fill: .appDynamic(light: 0x645C50, dark: 0x554E44),
                     ink: .appDynamic(light: 0xF9F4ED, dark: 0xE7DFD2),
@@ -71,12 +71,12 @@ public extension ActivityRating {
     /// the app's voice; this one is used for VoiceOver, where "Send it" is ambiguous.
     var accessibleLabel: String {
         switch self {
-            case .sendIt: return "Excellent"
-            case .goForIt: return "Good"
-            case .notBad: return "Fair"
-            case .ehMaybe: return "Poor"
-            case .stayIn: return "Bad"
-            case .notHere: return "Not applicable"
+            case .great: return "Excellent"
+            case .good: return "Good"
+            case .doable: return "Fair"
+            case .marginal: return "Poor"
+            case .skip: return "Bad"
+            case .notHere: return "Not Here"
         }
     }
 }

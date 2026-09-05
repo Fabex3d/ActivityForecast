@@ -17,7 +17,7 @@ struct LocationHeaderView: View {
     let leadingDay: DayForecast?
 
     var body: some View {
-        VStack(alignment: .leading, spacing: Spacing.small) {
+        VStack(spacing: Spacing.small) {
             Text(place.name)
                 .font(AppFont.displayLarge)
                 .foregroundStyle(AppColor.primaryText)
@@ -31,17 +31,18 @@ struct LocationHeaderView: View {
                     .padding(.top, Spacing.small)
             }
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
+        .frame(maxWidth: .infinity)
     }
 
     private func currentConditions(for day: DayForecast) -> some View {
         HStack(alignment: .firstTextBaseline, spacing: Spacing.medium) {
-            Text(WeatherFormat.temperature(celsius: day.highTemperatureCelsius))
-                .font(AppFont.displayScore)
-                .foregroundStyle(AppColor.primaryText)
-
+            Label(WeatherFormat.temperature(celsius: day.highTemperatureCelsius),
+                  systemImage: "thermometer.variable")
+            .font(AppFont.rowTitle)
+            .foregroundStyle(AppColor.secondaryText)
+            
             Label(day.conditionsSummary, systemImage: day.condition.systemImage)
-                .font(AppFont.rowDetail)
+                .font(AppFont.rowTitle)
                 .foregroundStyle(AppColor.secondaryText)
         }
         .accessibilityElement(children: .combine)
