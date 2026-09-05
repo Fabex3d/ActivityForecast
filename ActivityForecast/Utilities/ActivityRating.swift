@@ -10,7 +10,9 @@ import Foundation
 
 // MARK: - Rating
 
-enum ActivityRating: Int {
+/// `public` to match the other domain types (`DayActivityRating`,
+/// `LocationForecastResponse`), so scored values can surface through their APIs.
+public enum ActivityRating: Int {
     case sendIt = 5
     case goForIt = 4
     case notBad = 3

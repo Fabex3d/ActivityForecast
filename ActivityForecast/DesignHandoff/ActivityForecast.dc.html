@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+body{margin:0;background:#f5ead8;color:#201e1d;font-family:Figtree,system-ui,sans-serif}
+a{color:#8c491a;text-underline-offset:3px}a:hover{color:#c67139}
+.dv-turn{padding:44px 48px 36px}
+.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 26px}
+.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#201e1d;color:#f5ead8;border-radius:999px;text-decoration:none}
+.dv-tname{font:600 13px/1.2 Figtree,sans-serif;color:#201e1d}
+.dv-opts{display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start}
+.dv-opt{flex:none;display:flex;flex-direction:column;gap:12px;scroll-margin-top:16px}
+.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(32,30,29,.10);color:#201e1d;border-radius:999px;text-decoration:none}
+.dv-olabel{display:flex;align-items:baseline;gap:8px;font:500 11.5px/1.3 Figtree,sans-serif;color:rgba(32,30,29,.55)}
+.dv-opt:target .dv-oid{background:#c67139;color:#f5ead8}
+.dv-next{margin:30px 0 0;font:12.5px/1.6 Figtree,sans-serif;color:rgba(32,30,29,.55)}
+</style>
+</helmet>
+
+<section class="dv-turn" id="t2">
+<div class="dv-thd"><a class="dv-tid" href="#t2">2</a><span class="dv-tname">Scored with your Swift rating model — Los Andes, Chile (4–10 Sep)</span></div>
+<div class="dv-opts">
+
+<div class="dv-opt" id="2a">
+<div class="dv-olabel"><a class="dv-oid" href="#2a">2a</a>Detail — live parameters drive every score (tabs work)</div>
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" hint-size="402px,874px">
+  <div style="height:100%;background:#f5ead8;overflow:hidden;display:flex;flex-direction:column">
+    <div style="padding:58px 20px 0;display:flex;align-items:center;justify-content:space-between">
+      <div style="display:flex;align-items:center;gap:5px;font-size:14px;font-weight:600;color:#8c491a">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#8c491a" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 6l-6 6 6 6"></path></svg>Places
+      </div>
+      <div style="font-size:11px;font-weight:600;color:rgba(32,30,29,.42)">Open-Meteo · 09:00</div>
+    </div>
+
+    <div style="padding:12px 20px 0">
+      <div style="font-family:Caprasimo,serif;font-size:32px;line-height:1.05;letter-spacing:-.02em">Los Andes</div>
+      <div style="margin-top:4px;font-size:12px;font-weight:500;color:rgba(32,30,29,.5)">Valparaíso Region, Chile · 828 m</div>
+      <div style="margin-top:9px;display:flex;align-items:baseline;gap:10px">
+        <div style="font-family:Caprasimo,serif;font-size:22px">19°</div>
+        <div style="font-size:13px;font-weight:500;color:rgba(32,30,29,.55)">Light drizzle · 0.1 mm · UV 6.3 · wind 10 km/h</div>
+      </div>
+    </div>
+
+    <div style="padding:16px 16px 0;display:flex;gap:7px">
+      <div onClick="{{ laPickSki }}" style="flex:1;height:56px;border-radius:20px;background:{{ laSkiBg }};color:{{ laSkiFg }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round"><path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"></path></svg>
+        <div style="font-size:10.5px;font-weight:700">Ski</div>
+      </div>
+      <div onClick="{{ laPickSurf }}" style="flex:1;height:56px;border-radius:20px;background:{{ laSurfBg }};color:{{ laSurfFg }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round"><path d="M2 8c2.5-2.4 5-2.4 7.5 0s5 2.4 7.5 0 5-2.4 5 0M2 16c2.5-2.4 5-2.4 7.5 0s5 2.4 7.5 0 5-2.4 5 0"></path></svg>
+        <div style="font-size:10.5px;font-weight:700">Surf</div>
+      </div>
+      <div onClick="{{ laPickOut }}" style="flex:1;height:56px;border-radius:20px;background:{{ laOutBg }};color:{{ laOutFg }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20l7-11 4.5 6.5 2.5-3.5L21 20z"></path></svg>
+        <div style="font-size:10.5px;font-weight:700">Outdoors</div>
+      </div>
+      <div onClick="{{ laPickInd }}" style="flex:1;height:56px;border-radius:20px;background:{{ laIndBg }};color:{{ laIndFg }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V6l8-3v18M12 21h8V11l-8-3"></path></svg>
+        <div style="font-size:10.5px;font-weight:700">Indoors</div>
+      </div>
+    </div>
+
+    <div style="padding:12px 16px 0">
+      <div style="border-radius:28px;padding:16px 20px;background:{{ laHeroBg }};color:{{ laHeroFg }};display:flex;align-items:center;gap:16px">
+        <div style="font-family:Caprasimo,serif;font-size:40px;line-height:.9">{{ laHeroScore }}</div>
+        <div style="flex:1">
+          <div style="font-family:Caprasimo,serif;font-size:19px;line-height:1.1">{{ laHeroVerdict }}</div>
+          <div style="margin-top:4px;font-size:12px;font-weight:500;opacity:.85">{{ laHeroWhy }}</div>
+        </div>
+      </div>
+      <div style="margin-top:9px;display:inline-flex;align-items:center;gap:6px;background:#e1eecc;color:#3d472b;border-radius:999px;padding:6px 13px;font-size:11.5px;font-weight:600">{{ laBest }}</div>
+    </div>
+
+    <div style="flex:1;overflow:hidden;padding:14px 20px 0">
+      <div style="padding-bottom:4px;font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:rgba(32,30,29,.45)">7 days · {{ laActivity }}</div>
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(32,30,29,.10)">
+        <div style="width:52px"><div style="font-size:14px;font-weight:600">Today</div><div style="font-size:10.5px;font-weight:500;color:rgba(32,30,29,.45)">Fri 4</div></div>
+        <div style="flex:1;font-size:11.5px;font-weight:500;color:rgba(32,30,29,.62)">{{ l0params }}</div>
+        <div style="width:62px;text-align:right;font-size:11px;font-weight:700;color:{{ l0ink }}">{{ l0verdict }}</div>
+        <div style="width:36px;height:32px;border-radius:999px;background:{{ l0bg }};color:{{ l0fg }};display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:14px">{{ l0score }}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(32,30,29,.10)">
+        <div style="width:52px"><div style="font-size:14px;font-weight:600">Sat</div><div style="font-size:10.5px;font-weight:500;color:rgba(32,30,29,.45)">Sep 5</div></div>
+        <div style="flex:1;font-size:11.5px;font-weight:500;color:rgba(32,30,29,.62)">{{ l1params }}</div>
+        <div style="width:62px;text-align:right;font-size:11px;font-weight:700;color:{{ l1ink }}">{{ l1verdict }}</div>
+        <div style="width:36px;height:32px;border-radius:999px;background:{{ l1bg }};color:{{ l1fg }};display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:14px">{{ l1score }}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(32,30,29,.10)">
+        <div style="width:52px"><div style="font-size:14px;font-weight:600">Sun</div><div style="font-size:10.5px;font-weight:500;color:rgba(32,30,29,.45)">Sep 6</div></div>
+        <div style="flex:1;font-size:11.5px;font-weight:500;color:rgba(32,30,29,.62)">{{ l2params }}</div>
+        <div style="width:62px;text-align:right;font-size:11px;font-weight:700;color:{{ l2ink }}">{{ l2verdict }}</div>
+        <div style="width:36px;height:32px;border-radius:999px;background:{{ l2bg }};color:{{ l2fg }};display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:14px">{{ l2score }}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(32,30,29,.10)">
+        <div style="width:52px"><div style="font-size:14px;font-weight:600">Mon</div><div style="font-size:10.5px;font-weight:500;color:rgba(32,30,29,.45)">Sep 7</div></div>
+        <div style="flex:1;font-size:11.5px;font-weight:500;color:rgba(32,30,29,.62)">{{ l3params }}</div>
+        <div style="width:62px;text-align:right;font-size:11px;font-weight:700;color:{{ l3ink }}">{{ l3verdict }}</div>
+        <div style="width:36px;height:32px;border-radius:999px;background:{{ l3bg }};color:{{ l3fg }};display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:14px">{{ l3score }}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(32,30,29,.10)">
+        <div style="width:52px"><div style="font-size:14px;font-weight:600">Tue</div><div style="font-size:10.5px;font-weight:500;color:rgba(32,30,29,.45)">Sep 8</div></div>
+        <div style="flex:1;font-size:11.5px;font-weight:500;color:rgba(32,30,29,.62)">{{ l4params }}</div>
+        <div style="width:62px;text-align:right;font-size:11px;font-weight:700;color:{{ l4ink }}">{{ l4verdict }}</div>
+        <div style="width:36px;height:32px;border-radius:999px;background:{{ l4bg }};color:{{ l4fg }};display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:14px">{{ l4score }}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(32,30,29,.10)">
+        <div style="width:52px"><div style="font-size:14px;font-weight:600">Wed</div><div style="font-size:10.5px;font-weight:500;color:rgba(32,30,29,.45)">Sep 9</div></div>
+        <div style="flex:1;font-size:11.5px;font-weight:500;color:rgba(32,30,29,.62)">{{ l5params }}</div>
+        <div style="width:62px;text-align:right;font-size:11px;font-weight:700;color:{{ l5ink }}">{{ l5verdict }}</div>
+        <div style="width:36px;height:32px;border-radius:999px;background:{{ l5bg }};color:{{ l5fg }};display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:14px">{{ l5score }}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 0">
+        <div style="width:52px"><div style="font-size:14px;font-weight:600">Thu</div><div style="font-size:10.5px;font-weight:500;color:rgba(32,30,29,.45)">Sep 10</div></div>
+        <div style="flex:1;font-size:11.5px;font-weight:500;color:rgba(32,30,29,.62)">{{ l6params }}</div>
+        <div style="width:62px;text-align:right;font-size:11px;font-weight:700;color:{{ l6ink }}">{{ l6verdict }}</div>
+        <div style="width:36px;height:32px;border-radius:999px;background:{{ l6bg }};color:{{ l6fg }};display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:14px">{{ l6score }}</div>
+      </div>
+    </div>
+  </div>
+</x-import>
+</div>
+
+<div class="dv-opt" id="2b">
+<div class="dv-olabel"><a class="dv-oid" href="#2b">2b</a>Day sheet — the points that make Thu 10 a 2/5 outdoors</div>
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" hint-size="402px,874px">
+  <div style="height:100%;background:#f5ead8;overflow:hidden;position:relative">
+    <div style="padding:58px 20px 0;opacity:.32">
+      <div style="font-family:Caprasimo,serif;font-size:32px;line-height:1.05">Los Andes</div>
+      <div style="margin-top:4px;font-size:12px;font-weight:500;color:rgba(32,30,29,.5)">Valparaíso Region, Chile · 828 m</div>
+      <div style="margin-top:16px;display:flex;gap:7px">
+        <div style="flex:1;height:52px;border-radius:20px;background:#ebddc5"></div>
+        <div style="flex:1;height:52px;border-radius:20px;background:#ebddc5"></div>
+        <div style="flex:1;height:52px;border-radius:20px;background:#201e1d"></div>
+        <div style="flex:1;height:52px;border-radius:20px;background:#ebddc5"></div>
+      </div>
+      <div style="margin-top:12px;height:82px;border-radius:28px;background:#728157"></div>
+    </div>
+    <div style="position:absolute;left:0;right:0;bottom:0;background:#f9f4ed;border-radius:32px 32px 0 0;padding:12px 22px 40px;box-shadow:0 -12px 32px rgba(46,43,37,.22)">
+      <div style="width:44px;height:5px;border-radius:999px;background:rgba(32,30,29,.2);margin:0 auto 16px"></div>
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px">
+        <div>
+          <div style="font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:rgba(32,30,29,.45)">Thu 10 Sep · outdoor sights</div>
+          <div style="margin-top:6px;font-family:Caprasimo,serif;font-size:27px;line-height:1.05">Eh, maybe</div>
+          <div style="margin-top:5px;font-size:13px;font-weight:500;color:rgba(32,30,29,.6)">Rain showers · 15° / 6° · feels 12.5°</div>
+        </div>
+        <div style="width:64px;height:64px;border-radius:999px;background:#b2622d;color:#fff2eb;display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:26px">2</div>
+      </div>
+
+      <div style="margin-top:22px;font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:rgba(32,30,29,.45)">What moved the score</div>
+
+      <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;gap:12px;background:#f2ece2;border-radius:18px;padding:11px 14px">
+          <div style="flex:1">
+            <div style="font-size:13.5px;font-weight:600">Baseline <span style="font-weight:500;color:rgba(32,30,29,.5)"></span></div>
+            <div style="margin-top:2px;font-size:11px;font-weight:500;color:rgba(32,30,29,.45)">every outdoor day starts at 1</div>
+          </div>
+          <div style="min-width:42px;text-align:center;border-radius:999px;background:#e1eecc;color:#3d472b;padding:6px 12px;font-size:12.5px;font-weight:700">+1</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;background:#f2ece2;border-radius:18px;padding:11px 14px">
+          <div style="flex:1">
+            <div style="font-size:13.5px;font-weight:600">Sunshine <span style="font-weight:500;color:rgba(32,30,29,.5)">8.1 h</span></div>
+            <div style="margin-top:2px;font-size:11px;font-weight:500;color:rgba(32,30,29,.45)">sunshine_duration ≥ 8 h</div>
+          </div>
+          <div style="min-width:42px;text-align:center;border-radius:999px;background:#e1eecc;color:#3d472b;padding:6px 12px;font-size:12.5px;font-weight:700">+2</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;background:#f2ece2;border-radius:18px;padding:11px 14px">
+          <div style="flex:1">
+            <div style="font-size:13.5px;font-weight:600">Feels like <span style="font-weight:500;color:rgba(32,30,29,.5)">12.5°</span></div>
+            <div style="margin-top:2px;font-size:11px;font-weight:500;color:rgba(32,30,29,.45)">apparent_temperature_max in 10–15°</div>
+          </div>
+          <div style="min-width:42px;text-align:center;border-radius:999px;background:#e1eecc;color:#3d472b;padding:6px 12px;font-size:12.5px;font-weight:700">+1</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;background:#f2ece2;border-radius:18px;padding:11px 14px">
+          <div style="flex:1">
+            <div style="font-size:13.5px;font-weight:600">Rain total <span style="font-weight:500;color:rgba(32,30,29,.5)">17.4 mm</span></div>
+            <div style="margin-top:2px;font-size:11px;font-weight:500;color:rgba(32,30,29,.45)">precipitation_sum ≥ 5 mm</div>
+          </div>
+          <div style="min-width:42px;text-align:center;border-radius:999px;background:#ffe1d0;color:#8c491a;padding:6px 12px;font-size:12.5px;font-weight:700">−2</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;background:#f2ece2;border-radius:18px;padding:11px 14px">
+          <div style="flex:1">
+            <div style="font-size:13.5px;font-weight:600">UV index <span style="font-weight:500;color:rgba(32,30,29,.5)">6.1</span></div>
+            <div style="margin-top:2px;font-size:11px;font-weight:500;color:rgba(32,30,29,.45)">only 11+ deducts</div>
+          </div>
+          <div style="min-width:42px;text-align:center;border-radius:999px;background:rgba(32,30,29,.08);color:#645c50;padding:6px 12px;font-size:12.5px;font-weight:700">0</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:12px 14px 2px">
+          <div style="flex:1;font-size:13.5px;font-weight:700">Total, clamped 1–5</div>
+          <div style="min-width:42px;text-align:center;border-radius:999px;background:#b2622d;color:#fff2eb;padding:6px 12px;font-size:12.5px;font-weight:700">2</div>
+        </div>
+      </div>
+
+      <div style="margin-top:20px;border-radius:22px;background:#e1eecc;padding:14px 16px">
+        <div style="font-size:13px;font-weight:600;color:#3d472b">Indoor sights score 4/5 today</div>
+        <div style="margin-top:3px;font-size:12px;font-weight:500;color:rgba(61,71,43,.8)">+3 for 17.4 mm of rain, but showers (code 80) are not on the severe list — so 4, not 5.</div>
+      </div>
+    </div>
+  </div>
+</x-import>
+</div>
+
+<div class="dv-opt" id="2c">
+<div class="dv-olabel"><a class="dv-oid" href="#2c">2c</a>Rating criteria — the point ledger behind every pill</div>
+<div class="dv-card" style="width:620px;background:#f9f4ed;border-radius:28px;padding:30px 32px 34px;box-shadow:0 3px 10px rgba(46,43,37,.16)">
+  <div style="font-family:Caprasimo,serif;font-size:26px;line-height:1.1">How a day earns its number</div>
+  <div style="margin-top:8px;font-size:13.5px;font-weight:500;line-height:1.55;color:rgba(32,30,29,.62);max-width:460px">Every day starts at a baseline — 1 for skiing and sightseeing, 3 for surfing — then each Open-Meteo daily field adds or subtracts whole points. The total is clamped to 1–5. No weights, no averages, no gates.</div>
+
+  <div style="margin-top:26px;display:flex;flex-direction:column;gap:22px">
+
+    <div>
+      <div style="display:flex;align-items:center;gap:9px">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8c491a" stroke-width="2.75" stroke-linecap="round"><path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"></path></svg>
+        <div style="font-family:Caprasimo,serif;font-size:17px">Skiing</div>
+        <div style="font-size:11px;font-weight:600;color:rgba(32,30,29,.45)">baseline 1 · fresh snow is the driver</div>
+      </div>
+      <div style="margin-top:9px;display:flex;flex-wrap:wrap;gap:7px">
+        <div style="border-radius:999px;background:#ebddc5;padding:7px 13px;font-size:12px;font-weight:600">snowfall_sum <span style="font-weight:500;color:rgba(32,30,29,.55)">≥ 10 cm +3 · ≥ 3 +2 · &gt; 0 +1</span></div>
+        <div style="border-radius:999px;background:#ebddc5;padding:7px 13px;font-size:12px;font-weight:600">temperature_2m_max <span style="font-weight:500;color:rgba(32,30,29,.55)">≤ 2° +1</span></div>
+        <div style="border-radius:999px;background:#ebddc5;padding:7px 13px;font-size:12px;font-weight:600">wind_speed_10m_max <span style="font-weight:500;color:rgba(32,30,29,.55)">≥ 40 −2 · ≥ 25 −1 · lift risk</span></div>
+      </div>
+    </div>
+
+    <div>
+      <div style="display:flex;align-items:center;gap:9px">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8c491a" stroke-width="2.75" stroke-linecap="round"><path d="M2 8c2.5-2.4 5-2.4 7.5 0s5 2.4 7.5 0 5-2.4 5 0M2 16c2.5-2.4 5-2.4 7.5 0s5 2.4 7.5 0 5-2.4 5 0"></path></svg>
+        <div style="font-family:Caprasimo,serif;font-size:17px">Surfing</div>
+        <div style="font-size:11px;font-weight:600;color:rgba(32,30,29,.45)">baseline 3 · wind quality only, no swell in the feed</div>
+      </div>
+      <div style="margin-top:9px;display:flex;flex-wrap:wrap;gap:7px">
+        <div style="border-radius:999px;background:#ebddc5;padding:7px 13px;font-size:12px;font-weight:600">wind_speed_10m_max <span style="font-weight:500;color:rgba(32,30,29,.55)">10–25 +1 · &lt; 5 −1 · &gt; 35 −2</span></div>
+        <div style="border-radius:999px;background:#ebddc5;padding:7px 13px;font-size:12px;font-weight:600">wind_gusts_10m_max ÷ wind <span style="font-weight:500;color:rgba(32,30,29,.55)">ratio &gt; 3 −1 · gusty = choppy</span></div>
+      </div>
+    </div>
+
+    <div>
+      <div style="display:flex;align-items:center;gap:9px">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#56633f" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20l7-11 4.5 6.5 2.5-3.5L21 20z"></path></svg>
+        <div style="font-family:Caprasimo,serif;font-size:17px">Outdoor sightseeing</div>
+        <div style="font-size:11px;font-weight:600;color:rgba(32,30,29,.45)">baseline 1 · sun and comfort add, rain takes away</div>
+      </div>
+      <div style="margin-top:9px;display:flex;flex-wrap:wrap;gap:7px">
+        <div style="border-radius:999px;background:#e1eecc;padding:7px 13px;font-size:12px;font-weight:600">sunshine_duration <span style="font-weight:500;color:rgba(32,30,29,.55)">≥ 8 h +2 · ≥ 4 h +1</span></div>
+        <div style="border-radius:999px;background:#e1eecc;padding:7px 13px;font-size:12px;font-weight:600">apparent_temperature_max <span style="font-weight:500;color:rgba(32,30,29,.55)">15–28° +2 · 10–15° +1 · &gt; 32° −1</span></div>
+        <div style="border-radius:999px;background:#e1eecc;padding:7px 13px;font-size:12px;font-weight:600">precipitation_sum <span style="font-weight:500;color:rgba(32,30,29,.55)">≥ 5 mm −2 · &gt; 0 −1</span></div>
+        <div style="border-radius:999px;background:#e1eecc;padding:7px 13px;font-size:12px;font-weight:600">uv_index_max <span style="font-weight:500;color:rgba(32,30,29,.55)">≥ 11 −1</span></div>
+      </div>
+    </div>
+
+    <div>
+      <div style="display:flex;align-items:center;gap:9px">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#56633f" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V6l8-3v18M12 21h8V11l-8-3"></path></svg>
+        <div style="font-family:Caprasimo,serif;font-size:17px">Indoor sightseeing</div>
+        <div style="font-size:11px;font-weight:600;color:rgba(32,30,29,.45)">baseline 1 · inverted — bad weather scores high</div>
+      </div>
+      <div style="margin-top:9px;display:flex;flex-wrap:wrap;gap:7px">
+        <div style="border-radius:999px;background:#e1eecc;padding:7px 13px;font-size:12px;font-weight:600">precipitation_sum <span style="font-weight:500;color:rgba(32,30,29,.55)">≥ 10 mm +3 · ≥ 1 mm +2</span></div>
+        <div style="border-radius:999px;background:#e1eecc;padding:7px 13px;font-size:12px;font-weight:600">precipitation_probability_max <span style="font-weight:500;color:rgba(32,30,29,.55)">only if dry · ≥ 50% +2 · ≥ 20% +1</span></div>
+        <div style="border-radius:999px;background:#e1eecc;padding:7px 13px;font-size:12px;font-weight:600">weathercode <span style="font-weight:500;color:rgba(32,30,29,.55)">65 · 75 · 82 · 86 · 95 · 96 · 99 → +1</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="margin-top:28px;padding-top:20px;border-top:1px solid rgba(32,30,29,.12);display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+    <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(32,30,29,.45);margin-right:4px">Scale</div>
+    <div style="display:flex;align-items:center;gap:7px;border-radius:999px;background:#56633f;color:#f0fae1;padding:6px 13px;font-size:12px;font-weight:600"><span style="font-family:Caprasimo,serif">5</span> Send it</div>
+    <div style="display:flex;align-items:center;gap:7px;border-radius:999px;background:#728157;color:#f0fae1;padding:6px 13px;font-size:12px;font-weight:600"><span style="font-family:Caprasimo,serif">4</span> Go for it</div>
+    <div style="display:flex;align-items:center;gap:7px;border-radius:999px;background:#f6a06b;color:#402310;padding:6px 13px;font-size:12px;font-weight:600"><span style="font-family:Caprasimo,serif">3</span> Not bad</div>
+    <div style="display:flex;align-items:center;gap:7px;border-radius:999px;background:#b2622d;color:#fff2eb;padding:6px 13px;font-size:12px;font-weight:600"><span style="font-family:Caprasimo,serif">2</span> Eh, maybe</div>
+    <div style="display:flex;align-items:center;gap:7px;border-radius:999px;background:#645c50;color:#f9f4ed;padding:6px 13px;font-size:12px;font-weight:600"><span style="font-family:Caprasimo,serif">1</span> Stay in</div>
+    
+  </div>
+</div>
+</div>
+
+</div>
+<p class="dv-next">Try next: "wire the home list to real feeds for all 10 places" · "add the marine swell fields so surfing is real" · "add a swell field for surfing since Open-Meteo has a marine API"</p>
+</section>
+
+<section class="dv-turn" id="t1">
+<div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">ActivityForecast — iOS mockups · Organic system</span></div>
+<div class="dv-opts">
+
+<div class="dv-opt" id="1a">
+<div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>Home — places with a 7-day score strip</div>
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" hint-size="402px,874px">
+  <div style="height:100%;background:#f5ead8;overflow:hidden;display:flex;flex-direction:column">
+    <div style="padding:64px 20px 14px;display:flex;align-items:flex-end;justify-content:space-between;gap:12px">
+      <div>
+        <div style="font-family:Caprasimo,serif;font-size:31px;line-height:1.05;letter-spacing:-.015em">Activity<br>Forecast</div>
+        <div style="margin-top:7px;font-size:12.5px;font-weight:500;color:rgba(32,30,29,.55)">6 of 10 places · scores for today</div>
+      </div>
+      <div style="display:flex;gap:8px">
+        <div style="width:44px;height:44px;border-radius:999px;background:#ebddc5;display:flex;align-items:center;justify-content:center" style-hover="background:#dcd3c4">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#201e1d" stroke-width="2.75" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4.2-4.2"></path></svg>
+        </div>
+        <div style="width:44px;height:44px;border-radius:999px;background:#c67139;display:flex;align-items:center;justify-content:center" style-hover="background:#b2622d">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f5ead8" stroke-width="2.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>
+        </div>
+      </div>
+    </div>
+
+    <div style="flex:1;overflow:hidden;padding:6px 16px 0;display:flex;flex-direction:column;gap:12px">
+
+      <div style="background:#ebddc5;border-radius:28px;padding:16px 18px 14px;box-shadow:0 1px 2px rgba(46,43,37,.14)">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px">
+          <div>
+            <div style="font-family:Caprasimo,serif;font-size:21px;line-height:1.1">Zermatt</div>
+            <div style="margin-top:3px;font-size:12px;font-weight:500;color:rgba(32,30,29,.55)">Snow showers · feels −11°</div>
+          </div>
+          <div style="font-family:Caprasimo,serif;font-size:32px;line-height:1">−4°</div>
+        </div>
+        <div style="margin-top:14px;display:flex;align-items:center;gap:7px">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#56633f" stroke-width="2.75" stroke-linecap="round"><path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"></path></svg>
+          <div style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#56633f">Skiing</div>
+          <div style="font-size:11px;font-weight:500;color:rgba(32,30,29,.45)">· 18 cm today, thin midweek</div>
+        </div>
+        <div style="margin-top:8px;display:flex;gap:5px">
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;height:32px;border-radius:11px;background:#56633f;color:#f0fae1;display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:14px">5</div><div style="font-size:9.5px;font-weight:600;color:rgba(32,30,29,.45)">TO</div></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;height:32px;border-radius:11px;background:#728157;color:#f0fae1;display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:14px">4</div><div style="font-size:9.5px;font-weight:600;color:rgba(32,30,29,.45)">SU</div></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;height:32px;border-radius:11px;background:#b2622d;color:#fff2eb;display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:14px">2</div><div style="font-size:9.5px;font-weight:600;color:rgba(32,30,29,.45)">MO</div></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;height:32px;border-radius:11px;background:#b2622d;color:#fff2eb;display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:14px">2</div><div style="font-size:9.5px;font-weight:600;color:rgba(32,30,29,.45)">TU</div></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;height:32px;border-radius:11px;background:#b2622d;color:#fff2eb;display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:14px">2</div><div style="font-size:9.5px;font-weight:600;color:rgba(32,30,29,.45)">WE</div></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;height:32px;border-radius:11px;background:#f6a06b;color:#402310;display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:14px">3</div><div style="font-size:9.5px;font-weight:600;color:rgba(32,30,29,.45)">TH</div></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;height:32px;border-radius:11px;background:#f6a06b;color:#402310;display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:14px">3</div><div style="font-size:9.5px;font-weight:600;color:rgba(32,30,29,.45)">FR</div></div>
+        </div>
+      </div>
+
+      <div style="background:#ebddc5;border-radius:28px;padding:16px 18px 14px;box-shadow:0 1px 2px rgba(46,43,37,.14)">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px">
+          <div>
+            <div style="font-family:Caprasimo,serif;font-size:21px;line-height:1.1">Ericeira</div>
+            <div style="margin-top:3px;font-size:12px;font-weight:500;color:rgba(32,30,29,.55)">Clear · 1.8m swell, offshore</div>
+          </div>
+          <div style="font-family:Caprasimo,serif;font-size:32px;line-height:1">22°</div>
+        </div>
+        <div style="margin-top:14px;display:flex;align-items:center;gap:7px">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#56633f" stroke-width="2.75" stroke-linecap="round"><path d="M2 8c2.5-2.4 5-2.4 7.5 0s5 2.4 7.5 0 5-2.4 5 0M2 16c2.5-2.4 5-2.4 7.5 0s5 2.4 7.5 0 5-2.4 5 0"></path></svg>
+          <div style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#56633f">Surfing</div>
+          <div style="font-size:11px;font-weight:500;color:rgba(32,30,29,.45)">· clean through Tuesday</div>
+        </div>
+        <div style="margin-top:8px;display:flex;gap:5px">
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;height:32px;border-radius:11px;background:#728157;color:#f0fae1;display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:14px">4</div><div style="font-size:9.5px;font-weight:600;color:rgba(32,30,29,.45)">TO</div></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;height:32px;border-radius:11px;background:#56633f;color:#f0fae1;display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:14px">5</div><div style="font-size:9.5px;font-weight:600;color:rgba(32,30,29,.45)">SU</div></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;height:32px;border-radius:11px;background:#56633f;color:#f0fae1;display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:14px">5</div><div style="font-size:9.5px;font-weight:600;color:rgba(32,30,29,.45)">MO</div></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;height:32px;border-radius:11px;background:#f6a06b;color:#402310;display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:14px">3</div><div style="font-size:9.5px;font-weight:600;color:rgba(32,30,29,.45)">TU</div></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;height:32px;border-radius:11px;background:#b2622d;color:#fff2eb;display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:14px">2</div><div style="font-size:9.5px;font-weight:600;color:rgba(32,30,29,.45)">WE</div></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;height:32px;border-radius:11px;background:#b2622d;color:#fff2eb;display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:14px">2</div><div style="font-size:9.5px;font-weight:600;color:rgba(32,30,29,.45)">TH</div></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;height:32px;border-radius:11px;background:#f6a06b;color:#402310;display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:14px">3</div><div style="font-size:9.5px;font-weight:600;color:rgba(32,30,29,.45)">FR</div></div>
+        </div>
+      </div>
+
+      <div style="background:#ebddc5;border-radius:28px;padding:16px 18px 14px;box-shadow:0 1px 2px rgba(46,43,37,.14)">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px">
+          <div>
+            <div style="font-family:Caprasimo,serif;font-size:21px;line-height:1.1">Kyoto</div>
+            <div style="margin-top:3px;font-size:12px;font-weight:500;color:rgba(32,30,29,.55)">Rain most of the week</div>
+          </div>
+          <div style="font-family:Caprasimo,serif;font-size:32px;line-height:1">19°</div>
+        </div>
+        <div style="margin-top:14px;display:flex;align-items:center;gap:7px">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#56633f" stroke-width="2.75" stroke-linecap="round"><path d="M4 21V6l8-3v18M12 21h8V11l-8-3"></path><path d="M7.5 9v0M7.5 13.5v0M16 14v0"></path></svg>
+          <div style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#56633f">Indoor sights</div>
+          <div style="font-size:11px;font-weight:500;color:rgba(32,30,29,.45)">· museum weather</div>
+        </div>
+        <div style="margin-top:8px;display:flex;gap:5px">
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;height:32px;border-radius:11px;background:#56633f;color:#f0fae1;display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:14px">5</div><div style="font-size:9.5px;font-weight:600;color:rgba(32,30,29,.45)">TO</div></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;height:32px;border-radius:11px;background:#56633f;color:#f0fae1;display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:14px">5</div><div style="font-size:9.5px;font-weight:600;color:rgba(32,30,29,.45)">SU</div></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;height:32px;border-radius:11px;background:#728157;color:#f0fae1;display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:14px">4</div><div style="font-size:9.5px;font-weight:600;color:rgba(32,30,29,.45)">MO</div></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;height:32px;border-radius:11px;background:#728157;color:#f0fae1;display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:14px">4</div><div style="font-size:9.5px;font-weight:600;color:rgba(32,30,29,.45)">TU</div></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;height:32px;border-radius:11px;background:#56633f;color:#f0fae1;display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:14px">5</div><div style="font-size:9.5px;font-weight:600;color:rgba(32,30,29,.45)">WE</div></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;height:32px;border-radius:11px;background:#f6a06b;color:#402310;display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:14px">3</div><div style="font-size:9.5px;font-weight:600;color:rgba(32,30,29,.45)">TH</div></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;height:32px;border-radius:11px;background:#728157;color:#f0fae1;display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:14px">4</div><div style="font-size:9.5px;font-weight:600;color:rgba(32,30,29,.45)">FR</div></div>
+        </div>
+      </div>
+
+      <div style="background:#ebddc5;border-radius:28px;padding:16px 18px 14px;box-shadow:0 1px 2px rgba(46,43,37,.14)">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px">
+          <div>
+            <div style="font-family:Caprasimo,serif;font-size:21px;line-height:1.1">Reykjavík</div>
+            <div style="margin-top:3px;font-size:12px;font-weight:500;color:rgba(32,30,29,.55)">Windy · gusts to 64 km/h</div>
+          </div>
+          <div style="font-family:Caprasimo,serif;font-size:32px;line-height:1">6°</div>
+        </div>
+        <div style="margin-top:14px;display:flex;align-items:center;gap:7px">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8c491a" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20l7-11 4.5 6.5 2.5-3.5L21 20z"></path></svg>
+          <div style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#8c491a">Outdoor sights</div>
+          <div style="font-size:11px;font-weight:500;color:rgba(32,30,29,.45)">· hold your hat</div>
+        </div>
+        <div style="margin-top:8px;display:flex;gap:5px">
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;height:32px;border-radius:11px;background:#645c50;color:#f9f4ed;display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:14px">1</div><div style="font-size:9.5px;font-weight:600;color:rgba(32,30,29,.45)">TO</div></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;height:32px;border-radius:11px;background:#b2622d;color:#fff2eb;display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:14px">2</div><div style="font-size:9.5px;font-weight:600;color:rgba(32,30,29,.45)">SU</div></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;height:32px;border-radius:11px;background:#f6a06b;color:#402310;display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:14px">3</div><div style="font-size:9.5px;font-weight:600;color:rgba(32,30,29,.45)">MO</div></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;height:32px;border-radius:11px;background:#f6a06b;color:#402310;display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:14px">3</div><div style="font-size:9.5px;font-weight:600;color:rgba(32,30,29,.45)">TU</div></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;height:32px;border-radius:11px;background:#728157;color:#f0fae1;display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:14px">4</div><div style="font-size:9.5px;font-weight:600;color:rgba(32,30,29,.45)">WE</div></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;height:32px;border-radius:11px;background:#728157;color:#f0fae1;display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:14px">4</div><div style="font-size:9.5px;font-weight:600;color:rgba(32,30,29,.45)">TH</div></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;height:32px;border-radius:11px;background:#b2622d;color:#fff2eb;display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:14px">2</div><div style="font-size:9.5px;font-weight:600;color:rgba(32,30,29,.45)">FR</div></div>
+        </div>
+      </div>
+
+      <div style="background:#ebddc5;border-radius:28px;padding:16px 18px 8px;box-shadow:0 1px 2px rgba(46,43,37,.14)">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px">
+          <div>
+            <div style="font-family:Caprasimo,serif;font-size:21px;line-height:1.1">Queenstown</div>
+            <div style="margin-top:3px;font-size:12px;font-weight:500;color:rgba(32,30,29,.55)">Partly cloudy · light wind</div>
+          </div>
+          <div style="font-family:Caprasimo,serif;font-size:32px;line-height:1">11°</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</x-import>
+</div>
+
+<div class="dv-opt" id="1b">
+<div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a>Search & add a place — 10-place cap</div>
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" keyboard="{{ true }}" hint-size="402px,874px">
+  <div style="height:100%;background:#f5ead8;overflow:hidden;display:flex;flex-direction:column">
+    <div style="padding:60px 20px 0;display:flex;align-items:center;justify-content:space-between;gap:12px">
+      <div style="font-family:Caprasimo,serif;font-size:26px;line-height:1.1">Add a place</div>
+      <div style="font-size:14px;font-weight:600;color:#8c491a">Cancel</div>
+    </div>
+    <div style="padding:14px 20px 0">
+      <div style="display:flex;align-items:center;gap:10px;background:#ebddc5;border-radius:999px;padding:0 18px;height:48px">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(32,30,29,.5)" stroke-width="2.75" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4.2-4.2"></path></svg>
+        <div style="font-size:15px;font-weight:500">cham</div>
+        <div style="width:2px;height:19px;background:#c67139;border-radius:2px"></div>
+      </div>
+      <div style="margin-top:12px;display:inline-flex;align-items:center;gap:6px;background:#ffe1d0;color:#8c491a;border-radius:999px;padding:6px 13px;font-size:11.5px;font-weight:600">4 slots left of 10</div>
+    </div>
+
+    <div style="flex:1;overflow:hidden;padding:16px 16px 0;display:flex;flex-direction:column;gap:4px">
+      <div style="padding:0 6px 8px;font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:rgba(32,30,29,.45)">Results · scored for ski, surf &amp; sightseeing</div>
+
+      <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:22px;background:#ebddc5">
+        <div style="flex:1">
+          <div style="font-size:16px;font-weight:600">Chamonix-Mont-Blanc</div>
+          <div style="margin-top:2px;font-size:12px;font-weight:500;color:rgba(32,30,29,.5)">Haute-Savoie, France</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px">
+          <div style="min-width:34px;height:30px;padding:0 9px;border-radius:999px;background:#56633f;color:#f0fae1;display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:13px">5</div>
+          <div style="width:44px;height:44px;border-radius:999px;background:#c67139;display:flex;align-items:center;justify-content:center" style-hover="background:#b2622d">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#f5ead8" stroke-width="2.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:22px">
+        <div style="flex:1">
+          <div style="font-size:16px;font-weight:600">Chamonix Aiguille du Midi</div>
+          <div style="margin-top:2px;font-size:12px;font-weight:500;color:rgba(32,30,29,.5)">Viewpoint · 3,842 m</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px">
+          <div style="min-width:34px;height:30px;padding:0 9px;border-radius:999px;background:#728157;color:#f0fae1;display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:13px">4</div>
+          <div style="width:44px;height:44px;border-radius:999px;background:rgba(32,30,29,.08);display:flex;align-items:center;justify-content:center">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#201e1d" stroke-width="2.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:22px">
+        <div style="flex:1">
+          <div style="font-size:16px;font-weight:600">Champéry</div>
+          <div style="margin-top:2px;font-size:12px;font-weight:500;color:rgba(32,30,29,.5)">Valais, Switzerland</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px">
+          <div style="min-width:34px;height:30px;padding:0 9px;border-radius:999px;background:#f6a06b;color:#402310;display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:13px">3</div>
+          <div style="width:44px;height:44px;border-radius:999px;background:rgba(32,30,29,.08);display:flex;align-items:center;justify-content:center">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#201e1d" stroke-width="2.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:22px;opacity:.55">
+        <div style="flex:1">
+          <div style="font-size:16px;font-weight:600">Zermatt</div>
+          <div style="margin-top:2px;font-size:12px;font-weight:500;color:rgba(32,30,29,.5)">Already on your list</div>
+        </div>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#56633f" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"></path></svg>
+      </div>
+
+    </div>
+  </div>
+</x-import>
+</div>
+
+<div class="dv-opt" id="1c">
+<div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a>Place detail — tap an activity, see all 7 days (tabs work)</div>
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" hint-size="402px,874px">
+  <div style="height:100%;background:#f5ead8;overflow:hidden;display:flex;flex-direction:column">
+    <div style="padding:58px 20px 0;display:flex;align-items:center;justify-content:space-between">
+      <div style="display:flex;align-items:center;gap:5px;font-size:14px;font-weight:600;color:#8c491a">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#8c491a" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 6l-6 6 6 6"></path></svg>Places
+      </div>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(32,30,29,.55)" stroke-width="2.75" stroke-linecap="round"><circle cx="5" cy="12" r="1.4"></circle><circle cx="12" cy="12" r="1.4"></circle><circle cx="19" cy="12" r="1.4"></circle></svg>
+    </div>
+
+    <div style="padding:12px 20px 0">
+      <div style="font-family:Caprasimo,serif;font-size:34px;line-height:1.05;letter-spacing:-.02em">Zermatt</div>
+      <div style="margin-top:5px;display:flex;align-items:baseline;gap:10px">
+        <div style="font-family:Caprasimo,serif;font-size:22px">−4°</div>
+        <div style="font-size:13px;font-weight:500;color:rgba(32,30,29,.55)">Snow showers · 42 cm base · wind 14 km/h</div>
+      </div>
+    </div>
+
+    <div style="padding:16px 16px 0;display:flex;gap:7px">
+      <div onClick="{{ pickSki }}" style="flex:1;height:56px;border-radius:20px;background:{{ skiBg }};color:{{ skiFg }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round"><path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"></path></svg>
+        <div style="font-size:10.5px;font-weight:700">Ski</div>
+      </div>
+      <div onClick="{{ pickSurf }}" style="flex:1;height:56px;border-radius:20px;background:{{ surfBg }};color:{{ surfFg }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round"><path d="M2 8c2.5-2.4 5-2.4 7.5 0s5 2.4 7.5 0 5-2.4 5 0M2 16c2.5-2.4 5-2.4 7.5 0s5 2.4 7.5 0 5-2.4 5 0"></path></svg>
+        <div style="font-size:10.5px;font-weight:700">Surf</div>
+      </div>
+      <div onClick="{{ pickOut }}" style="flex:1;height:56px;border-radius:20px;background:{{ outBg }};color:{{ outFg }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20l7-11 4.5 6.5 2.5-3.5L21 20z"></path></svg>
+        <div style="font-size:10.5px;font-weight:700">Outdoors</div>
+      </div>
+      <div onClick="{{ pickInd }}" style="flex:1;height:56px;border-radius:20px;background:{{ indBg }};color:{{ indFg }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V6l8-3v18M12 21h8V11l-8-3"></path></svg>
+        <div style="font-size:10.5px;font-weight:700">Indoors</div>
+      </div>
+    </div>
+
+    <div style="padding:12px 16px 0">
+      <div style="border-radius:28px;padding:18px 20px;background:{{ heroBg }};color:{{ heroFg }};display:flex;align-items:center;gap:16px">
+        <div style="font-family:Caprasimo,serif;font-size:44px;line-height:.9">{{ heroScore }}</div>
+        <div style="flex:1">
+          <div style="font-family:Caprasimo,serif;font-size:20px;line-height:1.1">{{ heroVerdict }}</div>
+          <div style="margin-top:4px;font-size:12.5px;font-weight:500;opacity:.85">{{ heroReason }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="flex:1;overflow:hidden;padding:18px 20px 0">
+      <div style="padding-bottom:6px;font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:rgba(32,30,29,.45)">Next 7 days · {{ activityName }}</div>
+      <div style="display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid rgba(32,30,29,.10)">
+        <div style="width:58px">
+          <div style="font-size:14.5px;font-weight:600">Today</div>
+          <div style="font-size:11px;font-weight:500;color:rgba(32,30,29,.45)">Sat 5</div>
+        </div>
+        <div style="flex:1;font-size:12px;font-weight:500;color:rgba(32,30,29,.6)">{{ r0cond }}</div>
+        <div style="width:56px;text-align:right;font-size:13px;font-weight:600">−4° −11°</div>
+        <div style="width:66px;text-align:right;font-size:11.5px;font-weight:700;color:{{ r0ink }}">{{ r0verdict }}</div>
+        <div style="width:38px;height:34px;border-radius:999px;background:{{ r0bg }};color:{{ r0fg }};display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:15px">{{ r0score }}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid rgba(32,30,29,.10)">
+        <div style="width:58px">
+          <div style="font-size:14.5px;font-weight:600">Sun</div>
+          <div style="font-size:11px;font-weight:500;color:rgba(32,30,29,.45)">Sep 6</div>
+        </div>
+        <div style="flex:1;font-size:12px;font-weight:500;color:rgba(32,30,29,.6)">{{ r1cond }}</div>
+        <div style="width:56px;text-align:right;font-size:13px;font-weight:600">−3° −10°</div>
+        <div style="width:66px;text-align:right;font-size:11.5px;font-weight:700;color:{{ r1ink }}">{{ r1verdict }}</div>
+        <div style="width:38px;height:34px;border-radius:999px;background:{{ r1bg }};color:{{ r1fg }};display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:15px">{{ r1score }}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid rgba(32,30,29,.10)">
+        <div style="width:58px">
+          <div style="font-size:14.5px;font-weight:600">Mon</div>
+          <div style="font-size:11px;font-weight:500;color:rgba(32,30,29,.45)">Sep 7</div>
+        </div>
+        <div style="flex:1;font-size:12px;font-weight:500;color:rgba(32,30,29,.6)">{{ r2cond }}</div>
+        <div style="width:56px;text-align:right;font-size:13px;font-weight:600">−1° −7°</div>
+        <div style="width:66px;text-align:right;font-size:11.5px;font-weight:700;color:{{ r2ink }}">{{ r2verdict }}</div>
+        <div style="width:38px;height:34px;border-radius:999px;background:{{ r2bg }};color:{{ r2fg }};display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:15px">{{ r2score }}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid rgba(32,30,29,.10)">
+        <div style="width:58px">
+          <div style="font-size:14.5px;font-weight:600">Tue</div>
+          <div style="font-size:11px;font-weight:500;color:rgba(32,30,29,.45)">Sep 8</div>
+        </div>
+        <div style="flex:1;font-size:12px;font-weight:500;color:rgba(32,30,29,.6)">{{ r3cond }}</div>
+        <div style="width:56px;text-align:right;font-size:13px;font-weight:600">1° −5°</div>
+        <div style="width:66px;text-align:right;font-size:11.5px;font-weight:700;color:{{ r3ink }}">{{ r3verdict }}</div>
+        <div style="width:38px;height:34px;border-radius:999px;background:{{ r3bg }};color:{{ r3fg }};display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:15px">{{ r3score }}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid rgba(32,30,29,.10)">
+        <div style="width:58px">
+          <div style="font-size:14.5px;font-weight:600">Wed</div>
+          <div style="font-size:11px;font-weight:500;color:rgba(32,30,29,.45)">Sep 9</div>
+        </div>
+        <div style="flex:1;font-size:12px;font-weight:500;color:rgba(32,30,29,.6)">{{ r4cond }}</div>
+        <div style="width:56px;text-align:right;font-size:13px;font-weight:600">2° −3°</div>
+        <div style="width:66px;text-align:right;font-size:11.5px;font-weight:700;color:{{ r4ink }}">{{ r4verdict }}</div>
+        <div style="width:38px;height:34px;border-radius:999px;background:{{ r4bg }};color:{{ r4fg }};display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:15px">{{ r4score }}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid rgba(32,30,29,.10)">
+        <div style="width:58px">
+          <div style="font-size:14.5px;font-weight:600">Thu</div>
+          <div style="font-size:11px;font-weight:500;color:rgba(32,30,29,.45)">Sep 10</div>
+        </div>
+        <div style="flex:1;font-size:12px;font-weight:500;color:rgba(32,30,29,.6)">{{ r5cond }}</div>
+        <div style="width:56px;text-align:right;font-size:13px;font-weight:600">−2° −8°</div>
+        <div style="width:66px;text-align:right;font-size:11.5px;font-weight:700;color:{{ r5ink }}">{{ r5verdict }}</div>
+        <div style="width:38px;height:34px;border-radius:999px;background:{{ r5bg }};color:{{ r5fg }};display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:15px">{{ r5score }}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:11px 0">
+        <div style="width:58px">
+          <div style="font-size:14.5px;font-weight:600">Fri</div>
+          <div style="font-size:11px;font-weight:500;color:rgba(32,30,29,.45)">Sep 11</div>
+        </div>
+        <div style="flex:1;font-size:12px;font-weight:500;color:rgba(32,30,29,.6)">{{ r6cond }}</div>
+        <div style="width:56px;text-align:right;font-size:13px;font-weight:600">−5° −12°</div>
+        <div style="width:66px;text-align:right;font-size:11.5px;font-weight:700;color:{{ r6ink }}">{{ r6verdict }}</div>
+        <div style="width:38px;height:34px;border-radius:999px;background:{{ r6bg }};color:{{ r6fg }};display:flex;align-items:center;justify-content:center;font-family:Caprasimo,serif;font-size:15px">{{ r6score }}</div>
+      </div>
+    </div>
+  </div>
+</x-import>
+</div>
+
+<div class="dv-opt" id="1d">
+<div class="dv-olabel"><a class="dv-oid" href="#1d">1d</a>Empty state — first run</div>
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" hint-size="402px,874px">
+  <div style="height:100%;background:#f5ead8;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:0 32px;position:relative">
+    <div style="position:absolute;top:96px;right:-70px;width:230px;height:230px;border-radius:999px;background:#ffe1d0"></div>
+    <div style="position:absolute;top:210px;right:78px;width:104px;height:104px;border-radius:999px;background:#ccdbb2"></div>
+    <div style="position:relative;width:100%">
+      <div style="width:88px;height:88px;border-radius:999px;background:#ebddc5;display:flex;align-items:center;justify-content:center">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#c67139" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20l7-11 4.5 6.5 2.5-3.5L21 20z"></path><circle cx="17" cy="6" r="2.6"></circle></svg>
+      </div>
+      <div style="margin-top:26px;font-family:Caprasimo,serif;font-size:37px;line-height:1.05;letter-spacing:-.02em;text-wrap:pretty">Nowhere<br>to be. Yet.</div>
+      <div style="margin-top:14px;max-width:270px;font-size:15px;font-weight:500;line-height:1.5;color:rgba(32,30,29,.62);text-wrap:pretty">Add up to ten places and we'll rate every day of the week for skiing, surfing and sightseeing — indoors or out.</div>
+      <div style="margin-top:28px;display:inline-flex;align-items:center;gap:9px;height:52px;padding:0 24px;border-radius:999px;background:#c67139;color:#f5ead8;font-family:Caprasimo,serif;font-size:16px;cursor:pointer" style-hover="background:#b2622d">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#f5ead8" stroke-width="2.75" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4.2-4.2"></path></svg>
+        Find a place
+      </div>
+      <div style="margin-top:18px;display:flex;gap:7px;flex-wrap:wrap">
+        <div style="border-radius:999px;background:#ebddc5;padding:8px 14px;font-size:12.5px;font-weight:600;cursor:pointer">Use my location</div>
+        <div style="border-radius:999px;border:1px solid rgba(32,30,29,.16);padding:8px 14px;font-size:12.5px;font-weight:600;cursor:pointer">Zermatt</div>
+        <div style="border-radius:999px;border:1px solid rgba(32,30,29,.16);padding:8px 14px;font-size:12.5px;font-weight:600;cursor:pointer">Ericeira</div>
+      </div>
+    </div>
+  </div>
+</x-import>
+</div>
+
+</div>
+<p class="dv-next">Try next: "add a day-detail sheet to <a class="dv-oid" href="#1c">1c</a>" · "show the 7×4 matrix instead of tabs" · "give me a dark-mode version of <a class="dv-oid" href="#1a">1a</a>"</p>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;defaultActivity&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;ski&quot;,&quot;surf&quot;,&quot;out&quot;,&quot;ind&quot;],&quot;default&quot;:&quot;ski&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Detail screen&quot;},&quot;playfulVerdicts&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Copy&quot;},&quot;showReasons&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Copy&quot;}}">
+/* ── Open-Meteo daily feed snapshots ─────────────────────────────────────── */
+const LA = {
+  name: 'Los Andes', region: 'Valparaíso Region, Chile · 828 m',
+  days: ['Today', 'Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu'],
+  time: ['2026-09-04','2026-09-05','2026-09-06','2026-09-07','2026-09-08','2026-09-09','2026-09-10'],
+  weathercode: [51, 51, 0, 1, 1, 3, 80],
+  temperature_2m_max: [18.7, 22.4, 22.5, 22.7, 22.4, 21.6, 14.8],
+  temperature_2m_min: [8.7, 6.4, 8, 7.4, 8.3, 7.6, 5.7],
+  apparent_temperature_max: [18.7, 21.4, 22.5, 22, 21.7, 20.1, 12.5],
+  precipitation_sum: [0.1, 0.1, 0, 0, 0, 0, 17.4],
+  precipitation_probability_max: [0, 0, 0, 0, 4, 18, 57],
+  snowfall_sum: [0, 0, 0, 0, 0, 0, 0],
+  wind_speed_10m_max: [9.6, 7.4, 8.3, 6.1, 16.9, 9.9, 7.1],
+  wind_gusts_10m_max: [24.1, 26.3, 27.4, 29.9, 54.7, 33.1, 33.8],
+  wind_direction_10m_dominant: [236, 241, 249, 235, 95, 254, 272],
+  uv_index_max: [6.25, 6.35, 6.25, 6.45, 6.5, 5.7, 6.05],
+  sunshine_duration: [40004.73, 40537.04, 40516.11, 40495.31, 40199.08, 40453.97, 29076.11],
+};
+const ZM = {
+  name: 'Zermatt', region: 'Valais, Switzerland · 1,608 m',
+  days: ['Today', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+  time: ['2026-09-05','2026-09-06','2026-09-07','2026-09-08','2026-09-09','2026-09-10','2026-09-11'],
+  weathercode: [75, 71, 3, 1, 2, 61, 75],
+  temperature_2m_max: [-4, -3, -1, 1, 2, -2, -5],
+  temperature_2m_min: [-11, -10, -7, -5, -3, -8, -12],
+  apparent_temperature_max: [-11, -10, -7, -4, -2, -8, -13],
+  precipitation_sum: [12.4, 3.1, 0, 0, 0, 6.8, 21],
+  precipitation_probability_max: [86, 54, 10, 4, 8, 72, 94],
+  snowfall_sum: [18, 4.5, 0, 0, 0, 7.2, 25],
+  wind_speed_10m_max: [14, 11, 9, 7, 13, 28, 44],
+  wind_gusts_10m_max: [31, 26, 22, 19, 30, 58, 79],
+  wind_direction_10m_dominant: [310, 295, 270, 240, 225, 300, 320],
+  uv_index_max: [1.4, 2.2, 2.8, 3, 2.9, 1.8, 1.1],
+  sunshine_duration: [7200, 25000, 41000, 42000, 39000, 12000, 3600],
+};
+const WMO = { 0: 'Clear sky', 1: 'Mainly clear', 2: 'Partly cloudy', 3: 'Overcast', 51: 'Light drizzle', 53: 'Drizzle', 61: 'Light rain', 63: 'Rain', 71: 'Light snow', 75: 'Heavy snow', 80: 'Rain showers', 95: 'Thunderstorm' };
+
+/* ── Rating logic — direct port of the Swift ActivityRating extension.
+   Points are added to a baseline and clamped to 1–5. No weights, no gates. ── */
+const clamp = (v) => Math.max(1, Math.min(5, v));
+const SEVERE = [65, 75, 82, 86, 95, 96, 99];
+const total = (parts) => parts.reduce((a, p) => a + p.d, 0);
+
+function skiScore(d, i) {
+  const snow = d.snowfall_sum[i], tmax = d.temperature_2m_max[i], wind = d.wind_speed_10m_max[i];
+  const parts = [
+    { k: 'Baseline', v: '', d: 1 },
+    { k: 'Fresh snow', v: snow + ' cm', d: snow >= 10 ? 3 : snow >= 3 ? 2 : snow > 0 ? 1 : 0 },
+    { k: 'Max temp', v: tmax + '°', d: tmax <= 2 ? 1 : 0 },
+    { k: 'Wind', v: wind + ' km/h', d: wind >= 40 ? -2 : wind >= 25 ? -1 : 0 },
+  ];
+  return { score: clamp(total(parts)), raw: total(parts), parts,
+    chips: snow + ' cm snow · max ' + tmax + '° · wind ' + wind + ' km/h' };
+}
+function surfScore(d, i) {
+  const wind = d.wind_speed_10m_max[i], gust = d.wind_gusts_10m_max[i];
+  const ratio = wind > 0 ? gust / wind : 0;
+  const parts = [
+    { k: 'Baseline', v: 'neutral', d: 3 },
+    { k: 'Wind speed', v: wind + ' km/h', d: wind >= 10 && wind <= 25 ? 1 : wind < 5 ? -1 : wind > 35 ? -2 : 0 },
+    { k: 'Gust ratio', v: ratio.toFixed(1) + '×', d: ratio > 3 ? -1 : 0 },
+  ];
+  return { score: clamp(total(parts)), raw: total(parts), parts,
+    chips: 'wind ' + wind + ' · gusts ' + gust + ' km/h · ' + ratio.toFixed(1) + '× ratio' };
+}
+function indScore(d, i) {
+  const p = d.precipitation_sum[i], pp = d.precipitation_probability_max[i] ?? 0, c = d.weathercode[i];
+  const wet = p >= 10 ? 3 : p >= 1 ? 2 : pp >= 50 ? 2 : pp >= 20 ? 1 : 0;
+  const parts = [
+    { k: 'Baseline', v: '', d: 1 },
+    { k: p >= 1 ? 'Rain total' : 'Rain chance', v: p >= 1 ? p + ' mm' : pp + '%', d: wet },
+    { k: 'Severe code', v: WMO[c] || ('code ' + c), d: SEVERE.includes(c) ? 1 : 0 },
+  ];
+  return { score: clamp(total(parts)), raw: total(parts), parts,
+    chips: p + ' mm · ' + pp + '% chance · ' + (WMO[c] || c) };
+}
+function outScore(d, i) {
+  const p = d.precipitation_sum[i], sun = (d.sunshine_duration[i] ?? 0) / 3600,
+    feels = d.apparent_temperature_max[i], uv = d.uv_index_max[i];
+  const parts = [
+    { k: 'Baseline', v: '', d: 1 },
+    { k: 'Sunshine', v: sun.toFixed(1) + ' h', d: sun >= 8 ? 2 : sun >= 4 ? 1 : 0 },
+    { k: 'Feels like', v: feels + '°', d: feels >= 15 && feels <= 28 ? 2 : feels >= 10 && feels < 15 ? 1 : feels > 32 ? -1 : 0 },
+    { k: 'Rain total', v: p + ' mm', d: p >= 5 ? -2 : p > 0 ? -1 : 0 },
+    { k: 'UV index', v: uv.toFixed(1), d: uv >= 11 ? -1 : 0 },
+  ];
+  return { score: clamp(total(parts)), raw: total(parts), parts,
+    chips: sun.toFixed(1) + ' h sun · feels ' + feels + '° · ' + p + ' mm' };
+}
+const SCORERS = { ski: skiScore, surf: surfScore, out: outScore, ind: indScore };
+
+const SCORE = {
+  5: { bg: '#56633f', fg: '#f0fae1', label: 'Send it', plain: 'Excellent' },
+  4: { bg: '#728157', fg: '#f0fae1', label: 'Go for it', plain: 'Good' },
+  3: { bg: '#f6a06b', fg: '#402310', label: 'Not bad', plain: 'Fair' },
+  2: { bg: '#b2622d', fg: '#fff2eb', label: 'Eh, maybe', plain: 'Poor' },
+  1: { bg: '#645c50', fg: '#f9f4ed', label: 'Stay in', plain: 'Bad' },
+};
+const LABEL_INK = { 5: '#56633f', 4: '#56633f', 3: '#8c491a', 2: '#8c491a', 1: '#645c50' };
+const ACT_NAME = { ski: 'Skiing', surf: 'Surfing', out: 'Outdoor sights', ind: 'Indoor sights' };
+const SURF_NOTE = 'Wind-quality proxy — swell and coast orientation are not in this feed.';
+
+function screenVals(d, act, prefix, playful, showReasons) {
+  const flat = {};
+  let bestI = 0, bestS = -1;
+  for (let i = 0; i < 7; i++) {
+    const r = SCORERS[act](d, i), s = SCORE[r.score];
+    flat[prefix + i + 'params'] = r.chips;
+    flat[prefix + i + 'cond'] = r.chips;
+    flat[prefix + i + 'verdict'] = playful ? s.label : s.plain;
+    flat[prefix + i + 'score'] = String(r.score);
+    flat[prefix + i + 'bg'] = s.bg;
+    flat[prefix + i + 'fg'] = s.fg;
+    flat[prefix + i + 'ink'] = LABEL_INK[r.score];
+    if (r.score > bestS) { bestS = r.score; bestI = i; }
+  }
+  const today = SCORERS[act](d, 0), ts = SCORE[today.score];
+  const moved = today.parts.filter((p) => p.k !== 'Baseline' && p.d !== 0)
+    .map((p) => (p.d > 0 ? '+' : '−') + Math.abs(p.d) + ' ' + p.k.toLowerCase() + ' ' + p.v);
+  let why = (act === 'surf' ? '3 baseline' : '1 baseline') + (moved.length ? ' · ' + moved.join(' · ') : ' · nothing else moved');
+  if (act === 'surf') why = SURF_NOTE;
+  return { flat, bestI, bestS, today, ts,
+    why: showReasons ? why : 'Tap a day for the full ledger.' };
+}
+
+class Component extends DCLogic {
+  state = { act: 'ski', act2: 'out' };
+  renderVals() {
+    const playful = this.props.playfulVerdicts ?? true;
+    const showReasons = this.props.showReasons ?? true;
+    const act = this.props.defaultActivity && !this._touched ? this.props.defaultActivity : this.state.act;
+    const act2 = this.state.act2;
+    const pick = (k) => () => { this._touched = true; this.setState({ act: k }); };
+    const pick2 = (k) => () => this.setState({ act2: k });
+    const tab = (cur) => (k) => (cur === k ? { bg: '#201e1d', fg: '#f5ead8' } : { bg: '#ebddc5', fg: '#201e1d' });
+    const t = tab(act), t2 = tab(act2);
+
+    const z = screenVals(ZM, act, 'r', playful, showReasons);
+    const l = screenVals(LA, act2, 'l', playful, showReasons);
+
+    return {
+      ...z.flat, ...l.flat,
+      activityName: ACT_NAME[act],
+      heroScore: z.today.score + '/5', heroVerdict: playful ? z.ts.label : z.ts.plain,
+      heroReason: z.why, heroBg: z.ts.bg, heroFg: z.ts.fg,
+      skiBg: t('ski').bg, skiFg: t('ski').fg, surfBg: t('surf').bg, surfFg: t('surf').fg,
+      outBg: t('out').bg, outFg: t('out').fg, indBg: t('ind').bg, indFg: t('ind').fg,
+      pickSki: pick('ski'), pickSurf: pick('surf'), pickOut: pick('out'), pickInd: pick('ind'),
+
+      laActivity: ACT_NAME[act2],
+      laHeroScore: l.today.score + '/5', laHeroVerdict: playful ? l.ts.label : l.ts.plain,
+      laHeroWhy: l.why, laHeroBg: l.ts.bg, laHeroFg: l.ts.fg,
+      laBest: 'Best day · ' + LA.days[l.bestI] + ' at ' + l.bestS + '/5',
+      laSkiBg: t2('ski').bg, laSkiFg: t2('ski').fg, laSurfBg: t2('surf').bg, laSurfFg: t2('surf').fg,
+      laOutBg: t2('out').bg, laOutFg: t2('out').fg, laIndBg: t2('ind').bg, laIndFg: t2('ind').fg,
+      laPickSki: pick2('ski'), laPickSurf: pick2('surf'), laPickOut: pick2('out'), laPickInd: pick2('ind'),
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+App Requirement (Agent Context)
+This file exists so an AI coding agent has the what/for whom without re-deriving it from conversation history. It is a spec, not reasoning for the "why", see `THOUGHT_PROCESS.md`. For agent guardrails, see `AGENTS.md`.

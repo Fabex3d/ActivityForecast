@@ -128,20 +128,7 @@ public struct DailyForecast: Codable, Sendable {
 }
 
 
-import Foundation
-
-// MARK: - Activity Rating Models
-
-public struct DayActivityRating: Codable, Sendable {
-    public let date: String
-    public let skiing: Int
-    public let surfing: Int
-    public let indoorSightseeing: Int
-    public let outdoorSightseeing: Int
-}
-
 // MARK: - Rating Logic
-
 public extension LocationForecastResponse {
     
     /// Rates every day in the forecast 1–5 (5 = ideal) for each activity.
