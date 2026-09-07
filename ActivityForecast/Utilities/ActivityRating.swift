@@ -20,7 +20,7 @@ public enum ActivityRating: Int {
     case skip = 1
     case notHere = 0 // gated off entirely (no snow / no coastline)
     
-    var label: String {
+    var shortLabel: String {
         switch self {
             case .great: return "Great"
             case .good: return "Good"
@@ -28,6 +28,23 @@ public enum ActivityRating: Int {
             case .marginal: return "Marginal"
             case .skip: return "Skip"
             case .notHere: return "Not here"
+        }
+    }
+    
+    var detailedLabel: String {
+        switch self {
+            case .great:
+                return "Prime outdoor conditions"
+            case .good:
+                return "Go for it"
+            case .doable:
+                return "Fair, expect compromises"
+            case .marginal:
+                return "Rough, proceed cautiously"
+            case .skip:
+                return "Bad weather, pass"
+            case .notHere:
+                return "Not available here"
         }
     }
     

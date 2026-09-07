@@ -14,7 +14,9 @@ protocol PlaceSearching: Sendable {
     func places(matching query: String) async throws -> [Place]
 }
 
-struct PlaceSearchService: PlaceSearching {
+/// `nonisolated` so the project's default `MainActor` isolation doesn't pull the
+/// initialiser — or the network call — onto the main actor.
+nonisolated struct PlaceSearchService: PlaceSearching {
 
     private let network: NetworkService
 

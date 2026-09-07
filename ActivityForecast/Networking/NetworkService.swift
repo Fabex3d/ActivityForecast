@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct NetworkService {
+nonisolated struct NetworkService: Sendable {
     
     static let shared = NetworkService()
     
@@ -22,13 +22,13 @@ struct NetworkService {
     }
     
     func execute<URNType>(with urnType: URNType) async throws -> URNType.Derived where URNType : URI {
-        guard let request = urnType.getURLRequest() else {
+        guard let request = await urnType.getURLRequest() else {
             throw NetworkError.failedRequestGen
         }
         
         do {
             let (data, response) = try await session.data(for: request)
-            try validateResponse(for: response, data: data)
+            try await validateResponse(for: response, data: data)
             return try decodeResponse(for: urnType, from: data)
         } catch {
             throw error

@@ -53,7 +53,7 @@ struct VerdictLabelView: View {
     let rating: ActivityRating
 
     var body: some View {
-        Text(rating.label)
+        Text(rating.shortLabel)
             .font(AppFont.verdict)
             .foregroundStyle(rating.style.groundInk)
             .accessibilityLabel(rating.accessibleLabel)

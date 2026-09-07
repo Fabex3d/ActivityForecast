@@ -40,7 +40,7 @@ extension PlacesView {
         private func loadedContent(days: [DayForecast]) -> some View {
             if let leadingDay = days.first {
                 Label(
-                    "\(place.preferredActivity.title) · \(leadingDay.rating(for: place.preferredActivity).label)",
+                    "\(place.preferredActivity.title): \(leadingDay.rating(for: place.preferredActivity).detailedLabel)",
                     systemImage: place.preferredActivity.systemImage
                 )
                 .font(AppFont.sectionHeader)

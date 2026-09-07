@@ -123,7 +123,7 @@ final class PlacesViewModel {
                         } catch is CancellationError {
                             return (place.id, nil)
                         } catch {
-                            return (place.id, .failed(error.readableMessage))
+                            return await (place.id, .failed(error.readableMessage))
                         }
                     }
                 }

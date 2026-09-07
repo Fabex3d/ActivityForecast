@@ -18,7 +18,10 @@ protocol ForecastServicing: Sendable {
 }
 
 /// The live implementation: existing network layer in, existing scoring engine out.
-struct ForecastService: ForecastServicing {
+///
+/// `nonisolated` so the project's default `MainActor` isolation doesn't pull the
+/// initialiser — or the network call — onto the main actor.
+nonisolated struct ForecastService: ForecastServicing {
 
     private let network: NetworkService
 

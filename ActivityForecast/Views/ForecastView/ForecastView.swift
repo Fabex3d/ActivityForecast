@@ -14,12 +14,12 @@ import SwiftUI
 /// screen. Changes are reported back through `onActivityChange` so the home screen
 /// can remember what this place is being watched for.
 struct ForecastView: View {
-
+    
     private let onActivityChange: (Activity) -> Void
-
+    
     @State private var viewModel: ForecastViewModel
     @State private var selectedActivity: Activity
-
+    
     /// `@MainActor` because it builds a main-actor-isolated ViewModel.
     @MainActor
     init(
@@ -34,11 +34,11 @@ struct ForecastView: View {
         viewModel = ForecastViewModel(place: place, service: service)
         selectedActivity = place.preferredActivity
     }
-
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: Spacing.large) {
-                LocationHeaderView(place: viewModel.place, leadingDay: viewModel.leadingDay)
+                HeaderView(place: viewModel.place, leadingDay: viewModel.leadingDay)
                 ActivityPickerView(selection: $selectedActivity)
                 stateContent
             }
@@ -51,23 +51,23 @@ struct ForecastView: View {
             onActivityChange(activity)
         }
     }
-
+    
     /// Every case of the ViewModel's state is rendered; none fails silently.
     @ViewBuilder
     private var stateContent: some View {
         switch viewModel.state {
             case .loading:
-                ForecastLoadingView()
-
+                LoadingView()
+                
             case .loaded(let days):
-                ForecastWeekView(
+                WeekView(
                     days: days,
                     activity: selectedActivity,
                     bestDay: viewModel.bestDay(for: selectedActivity)
                 )
-
+                
             case .failed(let message):
-                ForecastErrorView(message: message) {
+                ErrorView(message: message) {
                     viewModel.retry()
                 }
         }
