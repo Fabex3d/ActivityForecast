@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 /// Human-readable renderings of a scored day.
 ///
@@ -78,26 +79,27 @@ public extension DayForecast {
                     "max \(WeatherFormat.temperature(celsius: highTemperatureCelsius))",
                     "wind \(WeatherFormat.windSpeed(kilometresPerHour: windSpeedKilometresPerHour))"
                 ]
-
+                
             case .surfing:
                 components = [
                     "wind \(WeatherFormat.windSpeed(kilometresPerHour: windSpeedKilometresPerHour))",
                     "gusts \(WeatherFormat.windSpeed(kilometresPerHour: windGustsKilometresPerHour))",
                     "\(WeatherFormat.ratio(gustRatio)) gust ratio"
                 ]
-
+                
             case .indoorSightseeing:
                 components = [
                     condition.description,
-                    "feels \(WeatherFormat.temperature(celsius: apparentHighCelsius))",
-                    "Sunlight: \(WeatherFormat.hours(sunshineHours))"
+                    "Temp: \(WeatherFormat.temperature(celsius: apparentHighCelsius))",
+                    "Rain: \(precipitationProbability)%"
                 ]
-
+                
             case .outdoorSightseeing:
                 components = [
+                    condition.description,
+                    "Temp: \(WeatherFormat.temperature(celsius: apparentHighCelsius))",
+                    "Rain: \(precipitationProbability)%",
                     "Sunlight: \(WeatherFormat.hours(sunshineHours))",
-                    "feels \(WeatherFormat.temperature(celsius: apparentHighCelsius))",
-                    WeatherFormat.rainfall(millimetres: precipitationMillimetres)
                 ]
         }
 
