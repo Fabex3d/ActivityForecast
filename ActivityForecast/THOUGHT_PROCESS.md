@@ -16,12 +16,19 @@
     3. Turn each day's weather into suitability score/rank for these four activities skiing, surfing, indoor and outdoor sightseeing
     4. Show result to user
 3. Now 2.1 and 2.2 are straight forward part. Coming 2.3 score/ranking the data to show suitability for the activities,
-    1. I have not does the skiing and surfing personally so I don't know what weather parameters are considered good or bad.
+    1. I have not did the skiing and surfing personally so I don't know what weather parameters are considered good or bad.
     2. For any location I know what kind of weather forecasting data I get. So I used that API and its reponse to filter out 
         data which I actually need and usefull for end user to take a decision for such activities. 
     3. I've attached that prompt and response here: [https://share.gemini.google/DfyEDjvAdSLH](https://share.gemini.google/DfyEDjvAdSLH)
     4. Now I've the relevant parameters that assess the suitabiltiy for 4 activities now I need a ranking system for end users.
     5. I used AI model and added context about forecast data and activitiy suitabilty and build a scoring system: [https://claude.ai/share/fdefab05-bb21-4900-a3f8-fbb4ed9394d6](https://claude.ai/share/fdefab05-bb21-4900-a3f8-fbb4ed9394d6)
+    6. Updated scoring system after some research:
+        1. Skiing
+        2. Surfing
+        3. Indoor Sightseeing:
+            1. To put simply if the outdoor weather is bad then its good for indoor activities.
+            2. That means high probability of precipitation/rain, High outdoor temperature, 
+        4. Outdoor Sightseeing:
 4. Screen and User flows
     1. While designing the UI/UX I took inspiration from [Weather app](https://apps.apple.com/us/app/weather/id1069513131) and [BassForecast](https://apps.apple.com/us/app/bassforecast-bass-fishing-app/id1088297101) (I worked on it over the period of 2 years), I've used Claude Design to generate the design. Heres link: [ActivityForecast](https://claude.ai/code/artifact/7f2d5423-a7f3-4ec4-9ec8-15ad0a9f57c4)
     2. Since Search -> Forecast alone felt incomplete so i've added `PlacesView` (Home Screen)
@@ -55,3 +62,4 @@
 7. I've attached the relevant docs/links AI prompts and respones below:
     1. https://gemini.google.com/app/f879ea0efb061f85
     2. https://claude.ai/share/fdefab05-bb21-4900-a3f8-fbb4ed9394d6
+    3. https://share.gemini.google/rXhg980WSqTy
