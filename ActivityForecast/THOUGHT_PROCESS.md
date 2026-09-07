@@ -22,13 +22,10 @@
     3. I've attached that prompt and response here: [https://share.gemini.google/DfyEDjvAdSLH](https://share.gemini.google/DfyEDjvAdSLH)
     4. Now I've the relevant parameters that assess the suitabiltiy for 4 activities now I need a ranking system for end users.
     5. I used AI model and added context about forecast data and activitiy suitabilty and build a scoring system: [https://claude.ai/share/fdefab05-bb21-4900-a3f8-fbb4ed9394d6](https://claude.ai/share/fdefab05-bb21-4900-a3f8-fbb4ed9394d6)
-    6. Updated scoring system after some research:
-        1. Skiing
-        2. Surfing
-        3. Indoor Sightseeing:
-            1. To put simply if the outdoor weather is bad then its good for indoor activities.
-            2. That means high probability of precipitation/rain, High outdoor temperature, 
-        4. Outdoor Sightseeing:
+    6. Scoring system
+        1. When would be ideal condtions for outdoor sightseeing? when weather is right, has ambient temperature, UV index low and low probablity of precipitation. 
+        2. And for Indoor sightseeing exact opposite conditions are suitable cause you are shielded by the structure. 
+        3. based on this criteria suitability score is calculated and displayed to user.
 4. Screen and User flows
     1. While designing the UI/UX I took inspiration from [Weather app](https://apps.apple.com/us/app/weather/id1069513131) and [BassForecast](https://apps.apple.com/us/app/bassforecast-bass-fishing-app/id1088297101) (I worked on it over the period of 2 years), I've used Claude Design to generate the design. Heres link: [ActivityForecast](https://claude.ai/code/artifact/7f2d5423-a7f3-4ec4-9ec8-15ad0a9f57c4)
     2. Since Search -> Forecast alone felt incomplete so i've added `PlacesView` (Home Screen)
