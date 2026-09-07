@@ -39,7 +39,7 @@ extension ForecastView {
                     )
                 }
                 
-                SectionHeaderView(title: "Next \(days.count) days · \(activity.title)")
+                SectionHeaderView(title: "Next \(days.count) days suitability for \(activity.title)")
                     .padding(.top, Spacing.medium)
                 
                 weekRows

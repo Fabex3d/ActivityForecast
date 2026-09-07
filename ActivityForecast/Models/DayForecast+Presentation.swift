@@ -88,14 +88,14 @@ public extension DayForecast {
 
             case .indoorSightseeing:
                 components = [
-                    WeatherFormat.rainfall(millimetres: precipitationMillimetres),
-                    "\(WeatherFormat.probability(precipitationProbability)) chance",
-                    condition.description
+                    condition.description,
+                    "feels \(WeatherFormat.temperature(celsius: apparentHighCelsius))",
+                    "Sunlight: \(WeatherFormat.hours(sunshineHours))"
                 ]
 
             case .outdoorSightseeing:
                 components = [
-                    "\(WeatherFormat.hours(sunshineHours)) sun",
+                    "Sunlight: \(WeatherFormat.hours(sunshineHours))",
                     "feels \(WeatherFormat.temperature(celsius: apparentHighCelsius))",
                     WeatherFormat.rainfall(millimetres: precipitationMillimetres)
                 ]

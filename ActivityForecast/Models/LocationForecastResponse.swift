@@ -191,54 +191,136 @@ public extension LocationForecastResponse {
         return clamp(score)
     }
     
-    // MARK: Indoor Sightseeing
-    // Drivers: precipitation_sum, precipitation_probability_max, weathercode.
-    // Bad outdoor weather = good indoor day.
-    private func indoorScore(index i: Int) -> Int {
+    // MARK: Sightseeing shared signals
+    //
+    // Indoor and outdoor sightseeing read the same handful of feed values, so each
+    // judgement call — "is this day wet/stormy", "is it too hot or cold", "is UV
+    // extreme" — is made once here and reused by both scores below. That's what
+    // stops one stormy day from being counted twice within a single score (once
+    // for its rain total, once for its weather code).
+    
+    /// Precipitation intensity for the day, 0 (dry) to 2 (heavy or stormy).
+    /// Folds the rain total, the forecast probability, and storm/heavy-weather
+    /// codes into a single level, rather than letting each add its own point.
+    private func wetnessLevel(index i: Int) -> Int {
         let d = daily
-        var score = 1
-        
         let precip = d.precipitationSum[i]
-        let precipProb = d.precipitationProbabilityMax[i] ?? 0
+        let precipProbability = d.precipitationProbabilityMax[i] ?? 0
         let code = d.weathercode[i]
         
-        if precip >= 10 { score += 3 }
-        else if precip >= 1 { score += 2 }
-        else if precipProb >= 50 { score += 2 }
-        else if precipProb >= 20 { score += 1 }
+        if precip >= SightseeingThresholds.heavyPrecipitationMillimetres
+            || SightseeingThresholds.stormWeatherCodes.contains(code) {
+            return 2
+        }
+        if precip >= SightseeingThresholds.moderatePrecipitationMillimetres
+            || precipProbability >= SightseeingThresholds.moderatePrecipitationProbability {
+            return 1
+        }
+        return 0
+    }
+    
+    /// Whether the day's "feels like" high sits outside a comfortable range to be
+    /// outside for a while. Reads apparent temperature alone (rather than also
+    /// checking the raw max/min separately) so heat and cold aren't scored twice.
+    private func hasExtremeTemperature(index i: Int) -> Bool {
+        let feelsLike = daily.apparentTemperatureMax[i]
+        return feelsLike <= SightseeingThresholds.coldExtreme
+        || feelsLike >= SightseeingThresholds.hotExtreme
+    }
+    
+    private func isComfortableTemperature(index i: Int) -> Bool {
+        let feelsLike = daily.apparentTemperatureMax[i]
+        return feelsLike >= SightseeingThresholds.comfortableLow
+        && feelsLike <= SightseeingThresholds.comfortableHigh
+    }
+    
+    private func hasExtremeUV(index i: Int) -> Bool {
+        daily.uvIndexMax[i] >= SightseeingThresholds.extremeUV
+    }
+    
+    /// Fog/rime codes only — a distinct signal from the wetness codes above, since a
+    /// foggy day isn't necessarily a wet one.
+    private func hasPoorVisibility(index i: Int) -> Bool {
+        SightseeingThresholds.fogWeatherCodes.contains(daily.weathercode[i])
+    }
+    
+    private func hasGoodDaylight(index i: Int) -> Bool {
+        let hours = (daily.sunshineDuration[i] ?? 0) / AppLimits.secondsPerHour
+        return hours >= SightseeingThresholds.goodSunshineHours
+    }
+    
+    private func hasSomeDaylight(index i: Int) -> Bool {
+        let hours = (daily.sunshineDuration[i] ?? 0) / AppLimits.secondsPerHour
+        return hours >= SightseeingThresholds.someSunshineHours
+    }
+    
+    /// Thresholds shared by the two sightseeing scores.
+    ///
+    /// Note: Open-Meteo's daily forecast doesn't include an air-quality figure, so
+    /// AQI isn't part of either score — adding it would mean requesting a new feed
+    /// variable and extending `LocationForecastResponse`, which is a data-model
+    /// change rather than a scoring-logic one.
+    private enum SightseeingThresholds {
+        static let heavyPrecipitationMillimetres = 10.0
+        static let moderatePrecipitationMillimetres = 1.0
+        static let moderatePrecipitationProbability = 50
+        static let stormWeatherCodes: Set<Int> = [65, 75, 82, 86, 95, 96, 99]
+        static let fogWeatherCodes: Set<Int> = [45, 48]
         
-        // Severe WMO codes (thunderstorm, heavy rain/snow)
-        if [65, 75, 82, 86, 95, 96, 99].contains(code) { score += 1 }
+        static let comfortableLow = 15.0
+        static let comfortableHigh = 28.0
+        static let coldExtreme = 0.0
+        static let hotExtreme = 32.0
         
-        return clamp(score)
+        static let extremeUV = 11.0
+        
+        static let goodSunshineHours = 8.0
+        static let someSunshineHours = 4.0
+        
+        /// Both sightseeing activities start from the same neutral midpoint; indoor
+        /// only ever moves up from here, outdoor moves in both directions.
+        static let sightseeingBaseScore = 3
+    }
+    
+    // MARK: Indoor Sightseeing
+    // Indoor sightseeing is largely weather-proof, so nothing here ever subtracts
+    // from the base score — temperature, storms, precipitation, UV, and (were it
+    // available) AQI never count against it directly. Bad outdoor conditions only
+    // ever push the score up, toward "this is a good day to be inside instead".
+    private func indoorScore(index i: Int) -> Int {
+        var score = SightseeingThresholds.sightseeingBaseScore
+        
+        if wetnessLevel(index: i) >= 1 { score += 1 }       // rain/storm outside
+        if hasExtremeTemperature(index: i) { score += 1 }   // too hot or cold outside
+        if hasExtremeUV(index: i) { score += 1 }            // harsh sun outside
+        if !hasSomeDaylight(index: i) { score += 1 }         // grey, low-light day
+        
+        return clamp(score, min: 0, max: 5)
     }
     
     // MARK: Outdoor Sightseeing
-    // Drivers: uv_index_max, sunshine_duration, apparent_temperature_max, precipitation_sum.
+    // Outdoor sightseeing moves in both directions: comfortable temperatures and
+    // good daylight add to the base score, while rain/storms, temperature extremes,
+    // poor visibility, and extreme UV subtract from it.
     private func outdoorScore(index i: Int) -> Int {
-        let d = daily
-        var score = 1
+        var score = SightseeingThresholds.sightseeingBaseScore
         
-        let uv = d.uvIndexMax[i]
-        let sunshine = d.sunshineDuration[i] ?? 0
-        let feelsLike = d.apparentTemperatureMax[i]
-        let precip = d.precipitationSum[i]
+        if isComfortableTemperature(index: i) { score += 1 }
+        if hasGoodDaylight(index: i) { score += 1 }
         
-        let sunshineHours = sunshine / 3600
-        if sunshineHours >= 8 { score += 2 }
-        else if sunshineHours >= 4 { score += 1 }
+        switch wetnessLevel(index: i) {
+            case 2: score -= 2   // heavy rain or storm
+            case 1: score -= 1   // light rain / good chance of it
+            default: break
+        }
+        if hasExtremeTemperature(index: i) { score -= 1 }
+        if hasExtremeUV(index: i) { score -= 1 }
+        if hasPoorVisibility(index: i) { score -= 1 }
         
-        if feelsLike >= 15 && feelsLike <= 28 { score += 2 }
-        else if feelsLike >= 10 && feelsLike < 15 { score += 1 }
-        else if feelsLike > 32 { score -= 1 } // too hot to enjoy
-        
-        if precip >= 5 { score -= 2 }
-        else if precip > 0 { score -= 1 }
-        
-        if uv >= 11 { score -= 1 } // extreme sun exposure caution
-        
-        return clamp(score)
+        return clamp(score, min: 0, max: 5)
     }
     
-    private func clamp(_ v: Int) -> Int { max(1, min(5, v)) }
+    private func clamp(_ value: Int, min lower: Int = 1, max upper: Int = 5) -> Int {
+        max(lower, min(upper, value))
+    }
 }
